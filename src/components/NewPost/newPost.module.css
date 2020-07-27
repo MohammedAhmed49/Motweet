@@ -1,0 +1,22 @@
+.newPost form{
+    padding: 20px;
+    border: 1px solid var(--main-color);
+    margin: 40px auto;
+    width: 500px;
+}
+.input{
+    border: 1px solid var(--main-color);
+    display: block;
+    background: none;
+    padding: 10px;
+    border-radius: 20px;
+    width: 100%;
+    margin: 10px 0;
+    color: var(--main-color);
+}
+.input::placeholder{
+    color: var(--sec-color);
+}
+textarea{
+    min-height: 100px;
+}
