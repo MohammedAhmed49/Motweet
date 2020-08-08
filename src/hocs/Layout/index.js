@@ -1,6 +1,7 @@
 import React, {Component} from 'react';
 import Toolbar from '../../components/Navbar/Toolbar';
 import Home from '../../containers/Home';
+import {BrowserRouter, Route} from 'react-router-dom';
 
 class Layout extends Component {
     render(){
@@ -9,7 +10,9 @@ class Layout extends Component {
                 <header>
                     <Toolbar />
                 </header>
-                <Home />
+                <BrowserRouter>
+                    <Route path="/" component={Home} />
+                </BrowserRouter>
             </React.Fragment>
         )
     }

@@ -2,4 +2,24 @@
     border: 1px solid #e1ccec;
     padding: 20px;
     margin: 10px 0;
+    display: block;
+    text-decoration: none;
+}
+.post .user{
+    color: var(--main-color);
+    font-size: 15px;
+}
+.date{
+    color: var(--thr-color);
+    font-size: 12px;
+    margin: 5px 0;
+}
+.title{
+    margin: 10px 0;
+    font-size: 22px;
+    color: #666;
+}
+.body{
+    font-size: 15px;
+    color: #666;
 }
