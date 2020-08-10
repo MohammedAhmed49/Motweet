@@ -1,6 +1,7 @@
 import React from 'react';
 import classes from './posts.module.css';
 import Post from './Post';
+import { connect } from 'react-redux';
 
 function Posts(props) {
 
@@ -17,4 +18,10 @@ function Posts(props) {
     )
 }
 
-export default Posts;
+const mapStateToProps = (state) => {
+    return{
+        posts: state.posts
+    }
+}
+
+export default connect(mapStateToProps)(Posts);

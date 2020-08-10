@@ -26,16 +26,61 @@ class Home extends Component {
                 title: 'Third title',
                 body: 'This is a body for a post. This is a body for a post. This is a body for a post. This is a body for a post. '
             },
-        ]
+        ],
+        newPost: {
+            id: null,
+            user: 'Momo',
+            date: null,
+            title: '',
+            body: ''
+        }
     }
+
+    newPostHandler = (e, inputName) => {
+        let newPost = { 
+            ...this.state.newPost,
+            [inputName]: e.target.value
+         }
+         this.setState({newPost});
+    }
+
+    newPostSubmit = (e) => {
+        e.preventDefault();
+        let newPost = { 
+            ...this.state.newPost,
+            id: Math.floor(Math.random() * Math.floor(1000000000)),
+            date: new Date()
+        }
+
+         this.setState(prevState => {
+            return{
+                posts:[
+                    ...prevState.posts,
+                    newPost
+                ],
+                newPost: {
+                    id: null,
+                    user: 'Momo',
+                    date: null,
+                    title: '',
+                    body: ''
+                }
+            }
+         });
+    }
+
     render() {
         return (
             <div>
-                <NewPost />
-                <Posts posts={this.state.posts}/>
+                <NewPost 
+                    inputChange={this.newPostHandler}
+                    newPost={this.state.newPost}
+                />
+                <Posts/>
             </div>
         )
     }
 }
 
 export default Home;
+
