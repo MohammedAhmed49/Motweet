@@ -1,9 +1,8 @@
 import * as actionNames from './actionNames';
 
-export const addPost = (title, body) => {
+export const addPost = (newPost) => {
     return {
         type: actionNames.ADD_POST,
-        title: title,
-        body: body
+        newPost: newPost
     }
 }

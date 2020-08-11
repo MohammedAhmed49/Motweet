@@ -1,3 +1,5 @@
+import * as actionNames from './actionNames';
+
 const initState = {
     posts: [
         {
@@ -21,11 +23,23 @@ const initState = {
             title: 'Third title',
             body: 'This is a body for a post. This is a body for a post. This is a body for a post. This is a body for a post. '
         },
-    ]
+    ],
+    
 }
 
 const reducer = (state = initState, action) => {
-    return state;
+    switch(action.type){
+        case actionNames.ADD_POST:
+            let updatedPosts = [ ...state.posts, action.newPost ]
+            return{
+                ...state,
+                posts: updatedPosts
+            }
+            break;
+        default:
+            return state;
+    }
+    
 }
 
 export default reducer;
