@@ -4,6 +4,7 @@ import Button from '../../components/UI/Button';
 import * as actionNames from '../../store/actionNames';
 import { addPost } from '../../store/actions';
 import { connect } from 'react-redux';
+import { initSubmit } from '../../store/actions';
 
 class NewPost extends Component{
 
@@ -32,7 +33,7 @@ class NewPost extends Component{
             id: Math.floor(Math.random() * Math.floor(1000000000)),
             date: new Date()
         }
-        this.props.addPost(newPost);
+        this.props.initSubmit(newPost);
         this.setState({
             newPost: {
                 id: null,
@@ -73,7 +74,8 @@ class NewPost extends Component{
 
 const mapDispatchToProps = (dispatch) => {
     return{
-        addPost: (newPost) => dispatch(addPost(newPost))
+        addPost: (newPost) => dispatch(addPost(newPost)),
+        initSubmit: (newPost) => dispatch(initSubmit(newPost))
     }
 }
 

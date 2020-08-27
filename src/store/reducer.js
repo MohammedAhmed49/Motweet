@@ -1,41 +1,44 @@
 import * as actionNames from './actionNames';
 
 const initState = {
-    posts: [
-        {
-            id: 1,
-            user: 'Momo',
-            date: new Date(),
-            title: 'First title',
-            body: 'This is a body for a post. This is a body for a post. This is a body for a post. This is a body for a post. '
-        },
-        {
-            id: 2,
-            user: 'Momo2',
-            date: new Date(),
-            title: 'Second title',
-            body: 'This is a body for a post. This is a body for a post. This is a body for a post. This is a body for a post. '
-        },
-        {
-            id: 3,
-            user: 'Momo3',
-            date: new Date(),
-            title: 'Third title',
-            body: 'This is a body for a post. This is a body for a post. This is a body for a post. This is a body for a post. '
-        },
-    ],
-    
+    posts: [],
+    loading: false,
+    error: null
 }
 
 const reducer = (state = initState, action) => {
     switch(action.type){
-        case actionNames.ADD_POST:
-            let updatedPosts = [ ...state.posts, action.newPost ]
+        
+        
+        case actionNames.POSTS_LOADED_START:
+            return{
+                ...state,
+                loading: true
+            }
+
+        case actionNames.POSTS_LOADED_SUCCESS:
+            console.log('Posts Success');
+            return{
+                ...state,
+                loading: false,
+                posts: action.posts
+            }
+
+        case actionNames.POSTS_LOADED_FAILED:
+            console.log(action.error);
+            return{
+                ...state,
+                loading: false,
+                error: action.error
+            }
+
+        case actionNames.POST_SUBMIT_SUCCESS:
+            let updatedPosts = [ action.newPost, ...state.posts ]
             return{
                 ...state,
                 posts: updatedPosts
             }
-            break;
+
         default:
             return state;
     }

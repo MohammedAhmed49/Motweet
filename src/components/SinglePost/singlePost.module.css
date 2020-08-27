@@ -1,0 +1,25 @@
+.singlePost{
+    width: 50%;
+    margin: 20px auto;
+}
+.title{
+    font-size: 40px;
+    font-weight: normal;
+    margin: 20px auto;
+    text-align: center;
+}
+.user{
+    font-size: 18px;
+}
+.user a{
+    color: var(--main-color);
+    text-decoration: none;
+}
+.date{
+    font-size: 13px;
+    margin: 10px 0;
+}
+.date a{
+    color: #aaa;
+    text-decoration: none;
+}

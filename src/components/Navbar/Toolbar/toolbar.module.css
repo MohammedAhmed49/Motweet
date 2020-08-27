@@ -7,3 +7,6 @@ nav{
     padding: 20px 0;
     align-items: center;
 }
+a{
+    text-decoration: none;
+}
