@@ -33,7 +33,6 @@ export const initPosts = () => {
         dispatch(startFetching());
         Axios.get('/posts.json')
         .then(res => {
-            console.log(res);
             dispatch(postsSuccess(res.data));
         })
         .catch(error => {
@@ -67,10 +66,12 @@ export const initSubmit = (newPost) => {
         dispatch(startSubmitting());
         Axios.post('/posts.json', newPost)
         .then(res => {
-            console.log(res);
+            newPost.id = res.data.name;
             dispatch(submitSuccess(newPost));
+            
         })
         .catch(error => {
+            console.log(error);
             dispatch(submitFailed(error));
         })
     }

@@ -2,30 +2,31 @@ import React, {useEffect} from 'react';
 import classes from './posts.module.css';
 import Post from './Post';
 import { connect } from 'react-redux';
-import {initPosts} from '../../store/actions';
-
-
+import Spinner from '../UI/Spinner';
 
 function Posts(props) {
 
-    useEffect (() => {
-        props.initPosts();
-    }, []);
+    // useEffect (() => {
+    //     props.initPosts();
+    // }, []);
 
-    let posts = <p>There's no posts!</p>;
     
+    let posts = <Spinner />;
 
-    if(props.posts){
-        // posts = props.posts.map(post => <Post key={post.id} post={post}/>);
-        posts = Object.keys(props.posts).map(key => {
-            console.log(props.posts[key]);
-            return(
-                <Post key={key} post={props.posts[key]}/>
-            )
-        });
+    if(!props.loading && props.posts){
+        if(props.posts.length === 0){
+            posts = <p>There's no posts!</p>;
+            
+        } else {
+            posts = Object.keys(props.posts).map(key => {
+                console.log(props.posts[key]);
+                return(
+                    <Post key={key} post={props.posts[key]}/>
+                )
+            });
+        }
     }
-
-    return (
+    return (        
         <div className={classes.posts}>
             {posts}
         </div>
@@ -34,13 +35,9 @@ function Posts(props) {
 
 const mapStateToProps = (state) => {
     return{
-        posts: state.posts
+        posts: state.posts,
+        loading: state.loading,
     }
 }
 
-const mapDispatchToProps = (dispatch) => {
-    return{
-        initPosts: () => dispatch(initPosts())
-    }
-}
-export default connect(mapStateToProps, mapDispatchToProps)(Posts);
+export default connect(mapStateToProps)(Posts);

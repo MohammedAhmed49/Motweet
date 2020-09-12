@@ -30,7 +30,6 @@ class NewPost extends Component{
         e.preventDefault();
         let newPost = { 
             ...this.state.newPost,
-            id: Math.floor(Math.random() * Math.floor(1000000000)),
             date: new Date()
         }
         this.props.initSubmit(newPost);

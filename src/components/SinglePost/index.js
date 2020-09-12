@@ -1,18 +1,28 @@
 import React from 'react';
 import { connect } from 'react-redux';
 import classes from './singlePost.module.css';
+import Spinner from '../UI/Spinner';
 
 function SinglePost(props) {
-    const post = props.posts.filter((post) => {
+    const filteredPost = props.posts.filter((post) => {
         return post.id == props.match.params.id
     });
-    const date = new Date(post.date);
+    const post = filteredPost[0];
+    let content = (<p className={classes.singlePost}><Spinner /></p>);
+    if(post){
+        const date = new Date(post.date);
+        content = (
+            <>
+                <h2 className={classes.title}>{post.title}</h2>
+                <p className={classes.user}>Author: <a href="#">{post.user}</a></p>
+                <p className={classes.date}>Writter in: {date.getFullYear() + "-" + (date.getMonth() + 1) + "-" + date.getDate() + " " + date.getHours() + ":" + (date.getMinutes() < 10 ? "0" + date.getMinutes() : date.getMinutes())}</p>
+                <p className={classes.body}>{post.body}</p>
+            </>
+        )
+    }
     return (
         <div className={classes.singlePost}>
-            <h2 className={classes.title}>{post[0].title}</h2>
-            <p className={classes.user}>Author: <a href="#">{post[0].user}</a></p>
-            <p className={classes.date}>Writter in: <a href="#">{date.getFullYear() + "-" + (date.getMonth() + 1) + "-" + date.getDate() + " " + date.getHours() + ":" + (date.getMinutes() < 10 ? "0" + date.getMinutes() : date.getMinutes())}</a></p>
-            <p className={classes.body}>{post[0].body}</p>
+            {content}
         </div>
     )
 }

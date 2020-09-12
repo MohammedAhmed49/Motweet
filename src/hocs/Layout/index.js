@@ -3,8 +3,14 @@ import Toolbar from '../../components/Navbar/Toolbar';
 import Home from '../../containers/Home';
 import {BrowserRouter, Route} from 'react-router-dom';
 import SinglePost from '../../components/SinglePost';
+import {initPosts} from '../../store/actions';
+import { connect } from 'react-redux';
+
 
 class Layout extends Component {
+    componentDidMount() {
+        this.props.initPosts();
+    }
     render(){
         return(
             <React.Fragment>
@@ -20,4 +26,11 @@ class Layout extends Component {
     }
 }
 
-export default Layout;
+
+const mapDispatchToProps = (dispatch) => {
+    return{
+        initPosts: () => dispatch(initPosts())
+    }
+}
+
+export default connect(null, mapDispatchToProps)(Layout);
