@@ -5,6 +5,9 @@ import {BrowserRouter, Route} from 'react-router-dom';
 import SinglePost from '../../components/SinglePost';
 import {initPosts} from '../../store/actions';
 import { connect } from 'react-redux';
+import SignUp from '../../containers/Auth/SignUp';
+import SignIn from '../../containers/Auth/SignIn';
+
 
 
 class Layout extends Component {
@@ -19,6 +22,8 @@ class Layout extends Component {
                         <Toolbar />
                     </header>
                     <Route exact path="/" component={Home} />
+                    <Route exact path="/signin" component={SignIn} />
+                    <Route exact path="/signup" component={SignUp} />
                     <Route path="/post/:id" component={SinglePost} />
                 </BrowserRouter>
             </React.Fragment>

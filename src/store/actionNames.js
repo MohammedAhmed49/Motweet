@@ -8,3 +8,8 @@ export const INIT_SUBMIT = 'INIT_SUBMIT';
 export const POST_SUBMIT_START = 'POST_SUBMIT_START';
 export const POST_SUBMIT_SUCCESS = 'POST_SUBMIT_SUCCESS';
 export const POST_SUBMIT_FAILED = 'POST_SUBMIT_FAILED';
+
+export const INIT_AUTH = 'INIT_AUTH';
+export const SIGN_UP_StART = 'SIGN_UP_StART';
+export const SIGN_UP_SUCCESS = 'SIGN_UP_SUCCESS';
+export const SIGN_UP_FAILED = 'SIGN_UP_FAILED';

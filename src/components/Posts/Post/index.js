@@ -11,7 +11,7 @@ function Post(props) {
                 <p className={classes.user}>{props.post.user}</p>
                 <p className={classes.date}>{date.getFullYear() + "-" + (date.getMonth() + 1) + "-" + date.getDate() + " " + date.getHours() + ":" + (date.getMinutes() < 10 ? "0" + date.getMinutes() : date.getMinutes())}</p>
                 <p className={classes.title}>{props.post.title}</p>
-                <p className={classes.body}>{props.post.body.substr(1, 50) + ' ...'}</p>
+                <p className={classes.body}>{props.post.body.substr(0, 50) + ' ...'}</p>
             </div>
         </NavLink>
     )

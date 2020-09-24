@@ -2,6 +2,7 @@ import React from 'react';
 import classes from './toolbar.module.css';
 import Logo from '../../UI/Logo';
 import { NavLink } from 'react-router-dom';
+import NavItems from '../NavItems';
 
 function Toolbar() {
     return (
@@ -11,7 +12,7 @@ function Toolbar() {
                     <NavLink to="/">
                         <Logo />
                     </NavLink>
-                    Here are some Links
+                    <NavItems />
                 </div>
             </div>
         </nav>

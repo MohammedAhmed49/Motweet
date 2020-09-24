@@ -26,7 +26,7 @@ function Posts(props) {
             });
         }
     }
-    return (        
+    return (
         <div className={classes.posts}>
             {posts}
         </div>

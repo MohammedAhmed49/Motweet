@@ -1,0 +1,6 @@
+.Navlink{
+    display: inline-block;
+    margin: 0 15px;
+    text-decoration: none;
+    color: var(--main-color);
+}

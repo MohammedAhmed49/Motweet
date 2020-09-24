@@ -56,12 +56,14 @@ class NewPost extends Component{
                             placeholder="Post name"
                             onChange={(event) => {this.inputChange(event, 'title')}}
                             value={this.state.newPost.title}
+                            required
                         />
                         <textarea 
                             className={classes.input} 
                             placeholder="Post body"
                             onChange={(event) => {this.inputChange(event, 'body')}}
                             value={this.state.newPost.body}
+                            required
                         />
                         <Button>Post</Button>
                     </form>
