@@ -1,4 +1,4 @@
-import * as actionNames from './actionNames';
+import * as actionNames from '../actions/actionNames';
 
 const initState = {
     posts: [],

@@ -3,7 +3,9 @@ import classes from '../Auth.module.css';
 import Button from '../../../components/UI/Button';
 import ErrorValidationLabel from '../../../components/UI/ErrorValidationLabel';
 import { connect } from 'react-redux';
-import { initSignup } from '../../../store/actions';
+import { initSignup } from '../../../store/actions/actions';
+import { Redirect } from 'react-router-dom';
+import Spinner from '../../../components/UI/Spinner';
 
 class SignUp extends Component {
     txtFieldState = {
@@ -47,7 +49,6 @@ class SignUp extends Component {
         const formValues = elementsArr.filter(element => element.name.length > 0).map(element => {
             const { typeMismatch } = element.validity;
             const { name, type, value } = element;
-
             return{
                 name,
                 type,
@@ -103,8 +104,9 @@ class SignUp extends Component {
 
         const passwordError = password.valid ? '' : <ErrorValidationLabel txtLbl={password.requiredTxt} />;
 
-        return (
-            <div>
+        let redirect = null;
+        
+        let form = <>
                 <h2 className={classes.title}>Sign Up</h2>
                 <form
                 className={classes.AuthForm}
@@ -148,15 +150,37 @@ class SignUp extends Component {
                     {passwordError}
                     <Button>Sign Up</Button>
                 </form>
+        </>
+
+        if(this.props.idToken){
+            redirect = <Redirect to="/" />
+        }
+
+        if(this.props.loading){
+            form = <Spinner />
+        }
+
+        return (
+            <div>
+                {redirect}
+                {form}
             </div>
         )
     }
 }
 
-const mapDispatchToProps = (dispatch) => {
+const mapStateToProps = state => {
+    return{
+        loading: state.auth.loading,
+        error: state.auth.error,
+        idToken: state.auth.idToken,
+    }
+}
+
+const mapDispatchToProps = dispatch => {
     return{
         initSignup: (firstName, lastName, email, password) => { dispatch(initSignup(firstName, lastName, email, password)) }
     }
 }
 
-export default connect(null, mapDispatchToProps)(SignUp);
+export default connect(mapStateToProps, mapDispatchToProps)(SignUp);

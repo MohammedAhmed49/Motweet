@@ -8,7 +8,7 @@ function SinglePost(props) {
         return post.id == props.match.params.id
     });
     const post = filteredPost[0];
-    let content = (<p className={classes.singlePost}><Spinner /></p>);
+    let content = (<div className={classes.singlePost}><Spinner /></div>);
     if(post){
         const date = new Date(post.date);
         content = (
@@ -29,7 +29,7 @@ function SinglePost(props) {
 
 const mapStateToProps = (state) => {
     return{
-        posts: state.posts
+        posts: state.posts.posts
     }
 }
 

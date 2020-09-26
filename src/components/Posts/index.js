@@ -19,7 +19,6 @@ function Posts(props) {
             
         } else {
             posts = Object.keys(props.posts).map(key => {
-                console.log(props.posts[key]);
                 return(
                     <Post key={key} post={props.posts[key]}/>
                 )
@@ -35,8 +34,8 @@ function Posts(props) {
 
 const mapStateToProps = (state) => {
     return{
-        posts: state.posts,
-        loading: state.loading,
+        posts: state.posts.posts,
+        loading: state.posts.loading,
     }
 }
 

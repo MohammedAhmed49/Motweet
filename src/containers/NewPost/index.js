@@ -1,10 +1,10 @@
 import React, { Component } from 'react';
 import classes from './newPost.module.css';
 import Button from '../../components/UI/Button';
-import * as actionNames from '../../store/actionNames';
-import { addPost } from '../../store/actions';
+import * as actionNames from '../../store//actions/actionNames';
+import { addPost } from '../../store/actions/actions';
 import { connect } from 'react-redux';
-import { initSubmit } from '../../store/actions';
+import { initSubmit } from '../../store/actions/actions';
 
 class NewPost extends Component{
 

@@ -3,7 +3,7 @@ import Toolbar from '../../components/Navbar/Toolbar';
 import Home from '../../containers/Home';
 import {BrowserRouter, Route} from 'react-router-dom';
 import SinglePost from '../../components/SinglePost';
-import {initPosts} from '../../store/actions';
+import {initPosts} from '../../store/actions/actions';
 import { connect } from 'react-redux';
 import SignUp from '../../containers/Auth/SignUp';
 import SignIn from '../../containers/Auth/SignIn';
