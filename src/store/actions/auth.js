@@ -2,6 +2,19 @@ import * as actionNames from './actionNames';
 import Axios from '../../axios';
 import axios from 'axios';
 
+const checkLogout = (expiresIn) => {
+    return dispatch => {
+        if(expiresIn > 0){
+            setTimeout(() => {
+                localStorage.removeItem('idToken');
+                localStorage.removeItem('userId');
+                localStorage.removeItem('expireDate');
+                //localStorage.removeItem('refreshToken');
+            }, expiresIn * 1000);
+        }
+    }
+}
+
 const startSignup = () => {
     return{
         type: actionNames.SIGN_UP_START
@@ -23,7 +36,7 @@ const signupFailed = (error) => {
 }
 
 export const initSignup = (firstName, lastName, email, password) => {
-    return (dispatch) => {
+    return dispatch => {
         dispatch(startSignup());
         let data = {
             email,
@@ -78,7 +91,7 @@ const signinFailed = (error) => {
 }
 
 export const initSignin = (email, password) => {
-    return (dispatch) => {
+    return dispatch => {
         dispatch(startSignin());
         let data = {
             email,
@@ -106,13 +119,24 @@ export const initSignin = (email, password) => {
     }
 }
 
-const checkLogout = (expiresIn) => {
+export const checkAuth = () => {
     return dispatch => {
-        setTimeout(() => {
-            localStorage.removeItem('token');
-            localStorage.removeItem('userId');
-            localStorage.removeItem('expireDate');
-            //localStorage.removeItem('refreshToken');
-        }, expiresIn * 1000);
+        const token = localStorage.getItem('idToken');
+        if (token) {
+            const exDate = new Date(Date.parse(localStorage.getItem('expireDate'))); 
+            const curDate = new Date().getTime();
+            if((curDate > exDate.getTime()) || !Number(exDate)){
+                localStorage.removeItem('idToken');
+                localStorage.removeItem('userId');
+                localStorage.removeItem('expireDate');
+            } else {
+                const data = {
+                    idToken: localStorage.getItem('idToken'),
+                    userId: localStorage.getItem('userId'),
+                }
+                dispatch(signinSuccess(data));
+                dispatch(checkLogout((exDate.getTime() - curDate) / 1000));
+            }
+        }
     }
 }

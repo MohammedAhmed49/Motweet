@@ -4,7 +4,6 @@ import {NavLink} from 'react-router-dom';
 
 function Post(props) {
     const date = new Date(props.post.date);
-    console.log(date);
     return (
         <NavLink to={`/post/${props.post.id}`} className={classes.post}>
             <div>

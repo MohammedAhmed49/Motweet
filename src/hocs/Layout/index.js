@@ -3,8 +3,8 @@ import Toolbar from '../../components/Navbar/Toolbar';
 import Home from '../../containers/Home';
 import {BrowserRouter, Route} from 'react-router-dom';
 import SinglePost from '../../components/SinglePost';
-import {initPosts} from '../../store/actions/actions';
-import { connect } from 'react-redux';
+import {initPosts, checkAuth} from '../../store/actions/actions';
+import {connect} from 'react-redux';
 import SignUp from '../../containers/Auth/SignUp';
 import SignIn from '../../containers/Auth/SignIn';
 
@@ -13,6 +13,7 @@ import SignIn from '../../containers/Auth/SignIn';
 class Layout extends Component {
     componentDidMount() {
         this.props.initPosts();
+        this.props.checkAuth();
     }
     render(){
         return(
@@ -34,7 +35,8 @@ class Layout extends Component {
 
 const mapDispatchToProps = (dispatch) => {
     return{
-        initPosts: () => dispatch(initPosts())
+        initPosts: () => dispatch(initPosts()),
+        checkAuth: () => dispatch(checkAuth())
     }
 }
 
